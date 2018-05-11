@@ -1,6 +1,5 @@
-package com.stonebell.lottoman.gson
+package com.stonebell.lottoman.retrofit
 import android.database.Observable
-import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import org.junit.Test
 
