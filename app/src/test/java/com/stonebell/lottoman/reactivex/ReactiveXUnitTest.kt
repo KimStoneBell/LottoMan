@@ -2,12 +2,15 @@ package com.stonebell.lottoman.reactivex
 
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import org.junit.Assert
 import org.junit.Test
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
+import java.util.concurrent.TimeUnit
 import kotlin.text.Typography.times
 
 
@@ -16,7 +19,7 @@ import kotlin.text.Typography.times
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
-class ReactiveXUnitTest : KotlinTests(){
+class ReactiveXUnitTest : KotlinTests() {
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {
@@ -24,24 +27,23 @@ class ReactiveXUnitTest : KotlinTests(){
     }
 
     @Test
-    fun subscribeFunctionTest(){
-        Flowable.just("hello!?").subscribe({ System.out.println(it)})
+    fun subscribeFunctionTest() {
+        Flowable.just("hello!?").subscribe({ System.out.println(it) })
 
         Flowable.just("hello!?").subscribe(System.out::println)
 
         Flowable.just("hello!?").subscribe(this::printTest)
     }
 
-    fun printTest(text: String){
+    fun printTest(text: String) {
         System.out.println(text)
     }
 
     @Test
     fun observableTest() {
-
         val observable = Observable.just("hello!?")
-        observable.subscribe({ data -> System.out.println("this is one : $data")})
-        observable.map({data:String -> (data + "add String")}).subscribe({ System.out.println("this is two : $it")})
+        observable.subscribe({ data -> System.out.println("this is one : $data") })
+        observable.map({ data: String -> (data + "add String") }).subscribe({ System.out.println("this is two : $it") })
 
         var abc = "hello"
 
@@ -54,50 +56,65 @@ class ReactiveXUnitTest : KotlinTests(){
 //        }
 
 //        val observer = Observable.just("hello", "hello1", "hello2", "hello3")
-        val testString = arrayListOf("hello","hello1","hello2","hello3")
-        val observer = Observable.just("hello", "hello1", "hello2", "hello3")
+//        val observer = Observable.just("hello", "hello1", "hello2", "hello3")
 
-        observer.subscribe({println("print next = $it")}, { println("print error : ${it.message}")})
+        val testString = listOf("hello", "hello1", "hello2", "hello3")
+        val observer = Observable.fromArray(testString)
+                .flatMapIterable { it }
+                .flatMap { Observable.fromArray(it.split("")).flatMapIterable { it } }
 
-        observer.also { println("also")}.let { println("let")}
 
-        observer.subscribe({println("print2 next = $it")}, { println("print2 error : ${it.message}")})
+        observer.subscribe({ println("print next = $it") }, { println("print error : ${it.message}") })
 
+        observer.also { println("also") }.let { println("let") }
+
+        observer.subscribe({ println("print2 next = $it") }, { println("print2 error : ${it.message}") })
+        observer.delay(1000, TimeUnit.MILLISECONDS).zipWith(Observable.range(1, Int.MAX_VALUE), BiFunction<String, Int, String> { t1, t2 -> "$t1 _ $t2" })
+                .subscribe({ println("zipWith : $it") })
     }
 
-    @Test fun filterTest(){
+    @Test
+    fun filterTest() {
         val observer = Observable.just("hello", "hello1", "hello2", "hello3")
 
-        observer.filter{it == "hello"}.map{it+"_index"}.subscribe({println("print : ${it == "hello"} , $it")})
+        observer.filter { it == "hello" }.map { it + "_index" }.subscribe({ println("print : ${it == "hello"} , $it") })
     }
 
-    @Test fun threadTest(){
+    @Test
+    fun threadTest() {
         val observer = Observable.just("hello", "hello1", "hello2", "hello3")
 
-        observer.subscribe({println("print : $it")})
+        observer.subscribe({ println("print : $it") })
 
         observer.map { it + ")" }
 
         var observarString = "hello1"
-        val observer2 = Observable.fromCallable {  observarString }
+        val observer2 = Observable.fromCallable { observarString }
 
-        observer2.subscribe({println("print3 : $it")})
+        observer2.subscribe({ println("print3 : $it") })
 
         observarString = "test2"
 
     }
 
-    @Test fun testCreate() {
-        Observable.create<String> { onSubscribe ->
-            onSubscribe.onNext("Hello")
-            onSubscribe.onComplete()
-        }.subscribeBy(
-                onError = {
-                    a.received(it)
-                println(it)}
-        )
+    @Test
+    fun myObservableTest() {
+        var a: String?
+        a = null
 
-        verify(a, times(1)).received("Hello")
+        Observable.create<String> {
+            it.onNext("Hello")
+            a!!.split("")
+
+//            it.onError(Throwable("myException"))
+            it.onComplete()
+        }.subscribe({ println("onNext : $it") }
+                , {
+                    println(it.message)
+                    Observable.fromArray(it.stackTrace.asList()).flatMapIterable { it }.subscribe({ println(it) })
+                }
+                , { println("onComplite :") })
+
     }
 
 }
