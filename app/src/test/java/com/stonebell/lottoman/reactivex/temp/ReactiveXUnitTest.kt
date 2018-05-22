@@ -1,17 +1,10 @@
-package com.stonebell.lottoman.reactivex
+package com.stonebell.lottoman.reactivex.temp
 
 import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.functions.BiFunction
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.toObservable
 import org.junit.Assert
 import org.junit.Test
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
-import java.util.concurrent.TimeUnit
-import kotlin.text.Typography.times
 
 
 /**
@@ -41,36 +34,7 @@ class ReactiveXUnitTest : KotlinTests() {
 
     @Test
     fun observableTest() {
-        val observable = Observable.just("hello!?")
-        observable.subscribe({ data -> System.out.println("this is one : $data") })
-        observable.map({ data: String -> (data + "add String") }).subscribe({ System.out.println("this is two : $it") })
-
         var abc = "hello"
-
-//        val observer = Observable.create<String>{
-//            it.onNext("hello")
-//            it.onNext("hello1")
-//            it.onNext("hello2")
-//            it.onNext("hello3")
-//            it.onError(Throwable("error1"))
-//        }
-
-//        val observer = Observable.just("hello", "hello1", "hello2", "hello3")
-//        val observer = Observable.just("hello", "hello1", "hello2", "hello3")
-
-        val testString = listOf("hello", "hello1", "hello2", "hello3")
-        val observer = Observable.fromArray(testString)
-                .flatMapIterable { it }
-                .flatMap { Observable.fromArray(it.split("")).flatMapIterable { it } }
-
-
-        observer.subscribe({ println("print next = $it") }, { println("print error : ${it.message}") })
-
-        observer.also { println("also") }.let { println("let") }
-
-        observer.subscribe({ println("print2 next = $it") }, { println("print2 error : ${it.message}") })
-        observer.delay(1000, TimeUnit.MILLISECONDS).zipWith(Observable.range(1, Int.MAX_VALUE), BiFunction<String, Int, String> { t1, t2 -> "$t1 _ $t2" })
-                .subscribe({ println("zipWith : $it") })
     }
 
     @Test
@@ -114,7 +78,26 @@ class ReactiveXUnitTest : KotlinTests() {
                     Observable.fromArray(it.stackTrace.asList()).flatMapIterable { it }.subscribe({ println(it) })
                 }
                 , { println("onComplite :") })
-
     }
 
+    fun hello() : Observable<String> = (0..1).toObservable().map { "Simple $ it" }
+
+
+
+    interface ITestInterface{
+        fun fun1()
+        fun fun2()
+    }
+
+
+
+    val funValue = object : ITestInterface {
+        override fun fun1() {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun fun2() {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+    }
 }

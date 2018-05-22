@@ -1,4 +1,4 @@
-package com.stonebell.lottoman.reactivex
+package com.stonebell.lottoman.reactivex.temp
 
 import org.junit.Before
 import org.mockito.Mock
