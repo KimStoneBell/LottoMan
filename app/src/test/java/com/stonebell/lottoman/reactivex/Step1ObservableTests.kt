@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
-class ObservableTests {
+class Step1ObservableTests {
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {
@@ -192,6 +192,5 @@ class ObservableTests {
         Thread.sleep(1000)
 
         source.subscribe { println("subscribe#4 : $it") }
-
     }
 }
