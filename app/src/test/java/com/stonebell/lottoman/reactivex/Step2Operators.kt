@@ -14,7 +14,7 @@ import kotlin.collections.HashMap
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
-class Step2OperatorsTests {
+class Step2Operators {
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {

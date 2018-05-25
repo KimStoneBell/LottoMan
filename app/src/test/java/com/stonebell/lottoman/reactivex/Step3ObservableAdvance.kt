@@ -17,7 +17,7 @@ import kotlin.collections.HashMap
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
-class Step3ObservableAdvanceTests {
+class Step3ObservableAdvance {
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {

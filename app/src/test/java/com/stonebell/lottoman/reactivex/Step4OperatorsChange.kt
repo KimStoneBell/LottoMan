@@ -18,7 +18,7 @@ import kotlin.collections.HashMap
  *
  * Observable Data change
  */
-class Step4OperatorsChangeTests {
+class Step4OperatorsChange {
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {

@@ -1,5 +1,6 @@
 package com.stonebell.lottoman.reactivex
 
+import com.stonebell.lottoman.reactivex.common.RxLog
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.functions.BiFunction
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit
  *
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
-class Step1ObservableTests {
+class Step1Observable {
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {
@@ -193,4 +194,62 @@ class Step1ObservableTests {
 
         source.subscribe { println("subscribe#4 : $it") }
     }
+
+    @Test
+    fun reactiveSumExample(){
+        val source = Observable.fromArray(arrayListOf("a:100","b:2020","a:300","b:0")).flatMapIterable { it }
+                .zipWith(Observable.interval(1000, TimeUnit.MILLISECONDS), BiFunction{data:String, notUsed:Long -> data})
+                .take(4)
+
+        val fillterA = source
+                .filter { it.startsWith("a:") }
+                .map { it.replace("a:","").toInt() }
+        val fillterB = source
+                .filter { it.startsWith("b:") }
+                .map { it.replace("b:","").toInt() }
+
+        Observable.combineLatest(fillterA.startWith(0), fillterB.startWith(0), BiFunction{data1: Int, data2: Int -> data1 + data2})
+                .subscribe { println(it) }
+
+        Thread.sleep(5000)
+
+    }
+
+    @Test
+    fun mergeTest(){
+//        val source1 = Observable.create<String>({
+//            it.onNext("1")
+//            it.onNext("3")
+//            it.onComplete()})
+
+        val source1 = Observable.fromArray(arrayListOf("1","3")).flatMapIterable { it }
+                .zipWith(Observable.interval(0,50, TimeUnit.MILLISECONDS), BiFunction{data:String, notUsed:Long -> data}).take(2)
+        val source2 = Observable.fromArray(arrayListOf("2","4","5")).flatMapIterable { it }
+                .zipWith(Observable.interval(100, TimeUnit.MILLISECONDS), BiFunction{data:String, notUsed:Long -> data}).take(3)
+
+        Observable.merge(source1, source2)
+                .subscribe { RxLog.d(it) }
+
+        Thread.sleep(1000);
+    }
+
+    @Test
+    fun concatTest(){
+        val source1 = Observable.fromArray(arrayListOf("1","3")).flatMapIterable { it }
+                .zipWith(Observable.interval(0,50, TimeUnit.MILLISECONDS), BiFunction{data:String, notUsed:Long -> data})
+                .take(2)
+                .doOnComplete({ RxLog.d("complite source1")})
+        val source2 = Observable.fromArray(arrayListOf("2","4","5")).flatMapIterable { it }
+                .zipWith(Observable.interval(100, TimeUnit.MILLISECONDS), BiFunction{data:String, notUsed:Long -> data})
+                .take(3)
+                .doOnComplete({ RxLog.d("complite source2")})
+
+        Observable.concat(source1, source2)
+                .doOnComplete { RxLog.d("complite concat") }
+                .subscribe { RxLog.d(it) }
+
+        Thread.sleep(1000)
+    }
+
+
 }
