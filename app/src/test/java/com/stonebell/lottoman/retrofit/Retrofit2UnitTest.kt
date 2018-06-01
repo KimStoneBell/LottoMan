@@ -1,6 +1,10 @@
 package com.stonebell.lottoman.retrofit
 import android.database.Observable
 import com.google.gson.annotations.SerializedName
+import com.stonebell.lottoman.info.LottoData
+import com.stonebell.lottoman.web.query.LottoInfoApi
+import io.reactivex.observers.TestObserver
+import io.reactivex.schedulers.Schedulers
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -36,6 +40,20 @@ class Retrofit2UnitTest {
         val reponseData = reponse.body()
 
         println("jsonClass !!! id : ${reponseData.toString()}")
+    }
+
+    @Test
+    fun retrofitObservable(){
+        val testObserver = TestObserver.create<LottoData>()
+        LottoInfoApi.create().getLottoInfoRx(10.toString())
+                .subscribeOn(Schedulers.io())
+                .doOnNext {
+                    println("print next : $it")
+                }
+                .subscribe (testObserver)
+
+
+        testObserver.awaitTerminalEvent()
     }
 
     fun initRetrofit(): Retrofit{

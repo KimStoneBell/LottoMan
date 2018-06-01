@@ -5,9 +5,13 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_lotto"
+        android:id="@+id/btn_lotto_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lottoNumber"
+        android:text="getLottoInfo"
         />
+    <TextView
+        android:id="@+id/tv_lotto_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
