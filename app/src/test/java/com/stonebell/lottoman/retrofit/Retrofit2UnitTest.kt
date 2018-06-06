@@ -44,7 +44,7 @@ class Retrofit2UnitTest {
 
     @Test
     fun retrofitObservable(){
-        val testObserver = TestObserver.create<LottoData>()
+        val testObserver = TestObserver.create<LottoInfoApi.Companion.LottoWebData>()
         LottoInfoApi.create().getLottoInfoRx(10.toString())
                 .subscribeOn(Schedulers.io())
                 .doOnNext {
