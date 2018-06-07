@@ -27,7 +27,15 @@ class QrcodeScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandle
     }
 
     override fun handleResult(rawResult: Result) {
-        Log.d("", rawResult.text)
+        Log.d("handleResult toString ", rawResult.toString())
+
+        val sourceResult = "http://qr.645lotto.net/?v=0809m021132353640m071523344143q132324323538q040714213942q0405131941450000000726"
+
+        val parseResult = sourceResult.substringAfter("?v=")
+
+        Log.d("handleResult ", parseResult.substring(IntRange(0, 4)));
+
+
         onBackPressed()
     }
 }

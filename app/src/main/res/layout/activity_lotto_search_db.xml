@@ -11,13 +11,13 @@
         android:inputType="number"/>
 
     <Button
-        android:id="@+id/btn_serch_lotto_info"
+        android:id="@+id/btn_search_lotto_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="serch LottoInfo"
         />
     <Button
-        android:id="@+id/btn_serch_last_lotto_info"
+        android:id="@+id/btn_search_last_lotto_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="serch Last LottoInfo"

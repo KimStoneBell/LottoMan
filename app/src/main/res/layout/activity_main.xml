@@ -17,4 +17,12 @@
         android:layout_height="wrap_content"
         android:text="serch Lotto Number"
         />
+
+    <Button
+        android:id="@+id/btn_qrcode_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qrcode Scan"
+
+        />
 </LinearLayout>

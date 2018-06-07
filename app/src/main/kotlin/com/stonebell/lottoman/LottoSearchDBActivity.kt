@@ -2,7 +2,6 @@ package com.stonebell.lottoman
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.google.firebase.database.*
 import com.jakewharton.rxbinding2.view.clicks
 import com.stonebell.lottoman.info.LottoData
@@ -12,36 +11,34 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_lotto_serch_db.*
+import kotlinx.android.synthetic.main.activity_lotto_search_db.*
 
-class LottoSerchDBActivity: AppCompatActivity(){
+class LottoSearchDBActivity: AppCompatActivity(){
 
     private val database: FirebaseDatabase by lazy { FirebaseDatabase.getInstance() }
     private val disposes = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lotto_serch_db)
+        setContentView(R.layout.activity_lotto_search_db)
 
-        val source = Observable.combineLatest(btn_serch_lotto_info.clicks(), Observable.just(et_target_lotto_num.text)
+        val source = Observable.combineLatest(btn_search_lotto_info.clicks(), Observable.just(et_target_lotto_num.text)
                 , BiFunction { _:Unit, startNum: CharSequence -> startNum.toString()})
                 .filter { it.isNotEmpty() }
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
 
         disposes += source.flatMap { getLottoInfoToFirbase(it.toInt()) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    tv_lotto_info.setText(it.getValue(LottoData::class.java).toString())
+                    tv_lotto_info.text = it.getValue(LottoData::class.java).toString()
                 }
 
-        disposes += btn_serch_last_lotto_info.clicks()
-                .subscribeOn(AndroidSchedulers.mainThread())
+        disposes += btn_search_last_lotto_info.clicks()
                 .observeOn(Schedulers.io())
                 .flatMap { getLastLottoNum() }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    tv_lotto_info.setText("Last Lotto No. : ${it.getValue(Int::class.java).toString()}")
+                    tv_lotto_info.text ="Last Lotto No. : ${it.getValue(Int::class.java).toString()}"
                 }
     }
 

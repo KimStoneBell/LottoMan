@@ -37,24 +37,27 @@ class LottoDBMakeActivity : AppCompatActivity() {
         val source = Observable.combineLatest(btn_lotto_info.clicks(), Observable.just(et_start_game_number.text), Observable.just(et_end_game_number.text)
                 , Function3 { _:Unit, startNum: CharSequence, endNum: CharSequence -> Pair(startNum.toString(), endNum.toString())})
                 .filter { it.first.isNotEmpty() }
-                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(Schedulers.io())
                 .share()
 
         disposes += source.filter { it.second.isNotEmpty() }
                 .flatMap { callLottoInfo(it.first.toInt(), it.second.toInt()) }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     val lottoData = it.convertToLottData()
                     database.reference.child("GAMES").child("NO_${lottoData.gameNum}").setValue(lottoData)
-                    Log.d("hyuhyu", lottoData.toString())
+                    tv_lotto_info.setText(lottoData.toString())
+                            Log.d("hyuhyu", lottoData.toString())
                 }
 
         disposes += source.filter { it.second.isEmpty() }
                 .map { it.first }
                 .flatMap { callLottoInfo(it.toInt()) }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     val lottoData = it.convertToLottData()
                     database.reference.child("GAMES").child("NO_${lottoData.gameNum}").setValue(lottoData)
+                    tv_lotto_info.setText(lottoData.toString())
                     Log.d("hyuhyu", lottoData.toString())
                 }
     }

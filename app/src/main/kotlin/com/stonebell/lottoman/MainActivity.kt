@@ -3,7 +3,9 @@ package com.stonebell.lottoman
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.jakewharton.rxbinding2.view.clicks
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
@@ -25,20 +27,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         disposables += btn_save_lotto_number.clicks()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     startActivity(Intent(this, LottoDBMakeActivity::class.java))
                 }
 
         disposables += btn_serch_lotto_db.clicks()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    startActivity(Intent(this, LottoSerchDBActivity::class.java))
+                    startActivity(Intent(this, LottoSearchDBActivity::class.java))
+                }
+
+        disposables += btn_qrcode_scan.clicks()
+                .subscribe {
+                    startActivity(Intent(this, QrcodeScannerActivity::class.java))
                 }
     }
 
     override fun onDestroy() {
         disposables.dispose()
         super.onDestroy()
+    }
+
+    fun clickCreate(): Observable<View> {
+        return Observable.create{emitter ->
+            btn_save_lotto_number.setOnClickListener{
+                emitter.onNext(it)
+            }
+        }
     }
 }
