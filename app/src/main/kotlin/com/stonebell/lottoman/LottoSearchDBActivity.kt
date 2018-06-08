@@ -27,7 +27,7 @@ class LottoSearchDBActivity: AppCompatActivity(){
                 .filter { it.isNotEmpty() }
                 .observeOn(Schedulers.io())
 
-        disposes += source.flatMap { getLottoInfoToFirbase(it.toInt()) }
+        disposes += source.flatMap { getLottoInfoToFirebase(it.toInt()) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     tv_lotto_info.text = it.getValue(LottoData::class.java).toString()
@@ -42,7 +42,7 @@ class LottoSearchDBActivity: AppCompatActivity(){
                 }
     }
 
-    private fun getLottoInfoToFirbase(targetNo: Int) : Observable<DataSnapshot>{
+    private fun getLottoInfoToFirebase(targetNo: Int) : Observable<DataSnapshot>{
         return database.reference.child("GAMES").child("NO_$targetNo").create()
     }
 
