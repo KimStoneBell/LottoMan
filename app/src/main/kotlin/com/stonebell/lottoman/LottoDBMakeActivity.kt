@@ -1,7 +1,7 @@
 package com.stonebell.lottoman
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.google.firebase.database.*
 import com.jakewharton.rxbinding2.view.clicks
@@ -30,8 +30,6 @@ class LottoDBMakeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto_db_maker)
-
-        et_start_game_number.text()
 
 
         val source = Observable.combineLatest(btn_lotto_info.clicks(), Observable.just(et_start_game_number.text), Observable.just(et_end_game_number.text)

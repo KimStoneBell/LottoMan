@@ -1,7 +1,7 @@
 package com.stonebell.lottoman
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.google.zxing.Result
 import com.stonebell.lottoman.info.CustomerNumberData

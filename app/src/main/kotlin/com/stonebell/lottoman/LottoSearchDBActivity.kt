@@ -1,7 +1,7 @@
 package com.stonebell.lottoman
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import com.jakewharton.rxbinding2.view.clicks
 import com.stonebell.lottoman.info.LottoData
@@ -43,14 +43,14 @@ class LottoSearchDBActivity: AppCompatActivity(){
     }
 
     private fun getLottoInfoToFirebase(targetNo: Int) : Observable<DataSnapshot>{
-        return database.reference.child("GAMES").child("NO_$targetNo").create()
+        return database.reference.child("GAMES").child("NO_$targetNo").createObserver()
     }
 
     private fun getLastLottoNum() : Observable<DataSnapshot>{
-        return database.reference.child("LAST_GAME_NO").create()
+        return database.reference.child("LAST_GAME_NO").createObserver()
     }
 
-    inline fun DatabaseReference.create(): io.reactivex.Observable<DataSnapshot> {
+    inline fun DatabaseReference.createObserver(): io.reactivex.Observable<DataSnapshot> {
         return Observable.create {emitter ->
             this.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
