@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android-extensions'
 apply from: '../versions.gradle'
 
 android {
@@ -69,6 +68,9 @@ dependencies {
     //firebase
     implementation deps.firebase_database
     implementation deps.firebase_core
+
+    //Jsoup
+    implementation deps.jsoup
 
     //livedata & viewmodel
     implementation deps.androidx_lifecycle_livedata_viewmodel

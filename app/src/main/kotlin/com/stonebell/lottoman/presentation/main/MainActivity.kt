@@ -7,6 +7,7 @@ import android.view.View
 import com.jakewharton.rxbinding2.view.clicks
 import com.stonebell.lottoman.QrcodeScannerActivity
 import com.stonebell.lottoman.R
+import com.stonebell.lottoman.presentation.lotto.store.StoreMapActivity
 import com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBActivity
 import com.stonebell.lottoman.presentation.lotto.make.LottoDBMakeActivity
 import io.reactivex.Observable
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, LottoDBMakeActivity::class.java))
                 }
 
-        disposables += btn_serch_lotto_db.clicks()
+        disposables += btn_search_lotto_db.clicks()
                 .subscribe {
                     startActivity(Intent(this, LottoSearchDBActivity::class.java))
                 }
@@ -42,6 +43,11 @@ class MainActivity : AppCompatActivity() {
         disposables += btn_qrcode_scan.clicks()
                 .subscribe {
                     startActivity(Intent(this, QrcodeScannerActivity::class.java))
+                }
+
+        disposables += btn_store_map.clicks()
+                .subscribe {
+                    startActivity(Intent(this, StoreMapActivity::class.java))
                 }
     }
 

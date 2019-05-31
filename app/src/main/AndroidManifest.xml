@@ -17,8 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.stonebell.lottoman.presentation.lotto.make.LottoDBMakeActivity" />
-        <activity android:name="com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBActivity" />
+        <activity android:name=".presentation.lotto.make.LottoDBMakeActivity" />
+        <activity android:name=".presentation.lotto.serch.LottoSearchDBActivity" />
+        <activity android:name=".presentation.lotto.store.StoreMapActivity"/>
         <activity android:name=".QrcodeScannerActivity" />
     </application>
 

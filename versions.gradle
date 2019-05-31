@@ -87,5 +87,9 @@ ext.deps.rx_binding_recyclerview_kotlin = "com.jakewharton.rxbinding2:rxbinding-
 
 ext.deps.qrscanner = "me.dm7.barcodescanner:zxing:1.9.8"
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ext.deps.jsoup = 'org.jsoup:jsoup:1.12.1'
+
 
 

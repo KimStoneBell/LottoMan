@@ -12,7 +12,7 @@
         />
 
     <Button
-        android:id="@+id/btn_serch_lotto_db"
+        android:id="@+id/btn_search_lotto_db"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="serch Lotto Number"
@@ -23,6 +23,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Qrcode Scan"
+
+        />
+
+    <Button
+        android:id="@+id/btn_store_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Store Map"
 
         />
 </LinearLayout>
