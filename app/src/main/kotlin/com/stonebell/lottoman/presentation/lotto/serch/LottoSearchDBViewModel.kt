@@ -35,7 +35,6 @@ class LottoSearchDBViewModel : ViewModel(){
         },{})
     }
 
-
     private fun getLottoInfoToFirebase(targetNo: Int) : Single<DataSnapshot> {
         return database.reference
                 .child("GAMES")
