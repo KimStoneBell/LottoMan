@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions'
 apply from: '../versions.gradle'
 
 android {
@@ -29,6 +30,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -64,6 +69,18 @@ dependencies {
     //firebase
     implementation deps.firebase_database
     implementation deps.firebase_core
+
+    //livedata & viewmodel
+    implementation deps.androidx_lifecycle_livedata_viewmodel
+    implementation deps.androidx_lifecycle_java8
+    implementation deps.androidx_lifecycle_reactivestreams
+    testImplementation deps.androidx_arch_core_testing
+
+    implementation deps.android_ktx_core
+    implementation deps.android_ktx_fragment
+    implementation deps.android_ktx_viewmodel
+    implementation deps.android_ktx_reactivestreams
+
 }
 
 apply plugin: 'com.google.gms.google-services'

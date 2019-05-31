@@ -1,6 +1,5 @@
 package com.stonebell.lottoman.info
 
-import com.google.gson.annotations.SerializedName
 data class LottoData(
         val gameNum: Int = 0,
         val date: String = "EMPTY",

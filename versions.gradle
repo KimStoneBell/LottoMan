@@ -17,6 +17,22 @@ ext.deps.gradle = "com.android.tools.build:gradle:3.4.0"
 ext.deps.support_appcompat = "androidx.appcompat:appcompat:1.0.2"
 ext.deps.support_v4 = "androidx.legacy:legacy-support-v4:1.0.0"
 ext.deps.support_multidex = "com.android.support:multidex:1.0.2"
+ext.deps.support_livedata_and_viewmodel = "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ext.versions.lifecycle = "2.1.0-beta01"
+
+ext.deps.androidx_lifecycle_livedata_viewmodel = "androidx.lifecycle:lifecycle-extensions:$ext.versions.lifecycle"
+ext.deps.androidx_lifecycle_java8 = "androidx.lifecycle:lifecycle-common-java8:$ext.versions.lifecycle"
+ext.deps.androidx_lifecycle_reactivestreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$ext.versions.lifecycle"
+ext.deps.androidx_arch_core_testing = "androidx.arch.core:core-testing:$ext.versions.lifecycle"
+
+
+ext.deps.android_ktx_core = "androidx.core:core-ktx:1.0.0"
+ext.deps.android_ktx_fragment = "androidx.fragment:fragment-ktx:1.1.0-alpha04"
+ext.deps.android_ktx_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
+ext.deps.android_ktx_reactivestreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.0.0"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

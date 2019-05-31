@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <EditText
-        android:id="@+id/et_target_lotto_num"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:hint="Serch No."
-        android:inputType="number"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBViewModel" />
+    </data>
 
-    <Button
-        android:id="@+id/btn_search_lotto_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="serch LottoInfo"
-        />
-    <Button
-        android:id="@+id/btn_search_last_lotto_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="serch Last LottoInfo"
-        />
-    <TextView
-        android:id="@+id/tv_lotto_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_target_lotto_num"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Serch No."
+            android:inputType="number"
+            android:text="@={viewModel.targetLottoText}"/>
+
+        <Button
+            android:id="@+id/btn_search_lotto_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="serch LottoInfo"
+            android:onClick="@{() -> viewModel.searchLottoInfo()}"
+            />
+        <Button
+            android:id="@+id/btn_search_last_lotto_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="serch Last LottoInfo"
+            android:onClick="@{() -> viewModel.searchLottoLastNumber()}"
+            />
+        <TextView
+            android:id="@+id/tv_lotto_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.lottoInfoText}"/>
+
+    </LinearLayout>
+</layout>

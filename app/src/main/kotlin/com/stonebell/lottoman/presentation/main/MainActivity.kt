@@ -1,12 +1,15 @@
-package com.stonebell.lottoman
+package com.stonebell.lottoman.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.jakewharton.rxbinding2.view.clicks
+import com.stonebell.lottoman.QrcodeScannerActivity
+import com.stonebell.lottoman.R
+import com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBActivity
+import com.stonebell.lottoman.presentation.lotto.make.LottoDBMakeActivity
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import kotlinx.android.synthetic.main.activity_main.*

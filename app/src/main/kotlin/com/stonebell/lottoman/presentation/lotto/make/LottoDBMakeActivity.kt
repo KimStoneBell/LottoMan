@@ -1,11 +1,11 @@
-package com.stonebell.lottoman
+package com.stonebell.lottoman.presentation.lotto.make
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.google.firebase.database.*
 import com.jakewharton.rxbinding2.view.clicks
-import com.jakewharton.rxbinding2.widget.text
+import com.stonebell.lottoman.R
 import com.stonebell.lottoman.web.query.LottoInfoApi
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,7 +30,6 @@ class LottoDBMakeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto_db_maker)
-
 
         val source = Observable.combineLatest(btn_lotto_info.clicks(), Observable.just(et_start_game_number.text), Observable.just(et_end_game_number.text)
                 , Function3 { _:Unit, startNum: CharSequence, endNum: CharSequence -> Pair(startNum.toString(), endNum.toString())})
