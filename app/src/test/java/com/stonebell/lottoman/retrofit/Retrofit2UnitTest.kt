@@ -1,8 +1,7 @@
 package com.stonebell.lottoman.retrofit
 import android.database.Observable
 import com.google.gson.annotations.SerializedName
-import com.stonebell.lottoman.info.LottoData
-import com.stonebell.lottoman.web.query.LottoInfoApi
+import com.stonebell.lottoman.data.datasource.web.LottoInfoApi
 import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers
 import org.junit.Test

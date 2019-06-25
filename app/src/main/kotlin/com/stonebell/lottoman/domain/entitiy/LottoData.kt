@@ -1,7 +1,7 @@
-package com.stonebell.lottoman.info
+package com.stonebell.lottoman.domain.entitiy
 
 data class LottoData(
-        val gameNum: Int = 0,
+        val gameRound: Int = 0,
         val date: String = "EMPTY",
         val accumamnt: Long = 0,
         val winamnt: Long = 0,

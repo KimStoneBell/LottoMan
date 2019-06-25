@@ -1,19 +1,11 @@
 package com.stonebell.lottoman.presentation.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
-import com.jakewharton.rxbinding2.view.clicks
-import com.stonebell.lottoman.QrcodeScannerActivity
+import androidx.databinding.DataBindingUtil
 import com.stonebell.lottoman.R
-import com.stonebell.lottoman.presentation.lotto.store.StoreMapActivity
-import com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBActivity
-import com.stonebell.lottoman.presentation.lotto.make.LottoDBMakeActivity
-import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
-import kotlinx.android.synthetic.main.activity_main.*
+import com.stonebell.lottoman.databinding.ActivityMainBinding
+import com.stonebell.lottoman.presentation.NavigationController
 
 /**
  * 1. 최초 FirebaseDB에서 마지막 회차에 대한 데이터를 가져옴
@@ -24,43 +16,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val disposables = CompositeDisposable()
+    private val navigationController : NavigationController by lazy { NavigationController(baseContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        disposables += btn_save_lotto_number.clicks()
-                .subscribe {
-                    startActivity(Intent(this, LottoDBMakeActivity::class.java))
-                }
-
-        disposables += btn_search_lotto_db.clicks()
-                .subscribe {
-                    startActivity(Intent(this, LottoSearchDBActivity::class.java))
-                }
-
-        disposables += btn_qrcode_scan.clicks()
-                .subscribe {
-                    startActivity(Intent(this, QrcodeScannerActivity::class.java))
-                }
-
-        disposables += btn_store_map.clicks()
-                .subscribe {
-                    startActivity(Intent(this, StoreMapActivity::class.java))
-                }
-    }
-
-    override fun onDestroy() {
-        disposables.dispose()
-        super.onDestroy()
-    }
-
-    fun clickCreate(): Observable<View> {
-        return Observable.create{emitter ->
-            btn_save_lotto_number.setOnClickListener{
-                emitter.onNext(it)
-            }
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main).apply {
+            navigator = navigationController
         }
     }
 }
+

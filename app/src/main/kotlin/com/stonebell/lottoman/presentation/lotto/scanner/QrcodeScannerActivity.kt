@@ -1,10 +1,10 @@
-package com.stonebell.lottoman
+package com.stonebell.lottoman.presentation.lotto.scanner
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.google.zxing.Result
-import com.stonebell.lottoman.info.CustomerNumberData
+import com.stonebell.lottoman.domain.entitiy.CustomerNumberData
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class QrcodeScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {

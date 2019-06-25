@@ -1,8 +1,8 @@
-package com.stonebell.lottoman.web.query
+package com.stonebell.lottoman.data.datasource.web
 
 import android.os.AsyncTask
 import com.google.firebase.database.FirebaseDatabase
-import com.stonebell.lottoman.info.StoreData
+import com.stonebell.lottoman.domain.entitiy.StoreData
 import org.jsoup.Jsoup
 
 class LottoStoreInfoApi {

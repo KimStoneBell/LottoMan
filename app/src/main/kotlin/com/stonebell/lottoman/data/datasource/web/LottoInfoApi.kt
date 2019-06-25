@@ -1,14 +1,12 @@
-package com.stonebell.lottoman.web.query
+package com.stonebell.lottoman.data.datasource.web
 
 import com.google.gson.annotations.SerializedName
-import com.stonebell.lottoman.info.LottoData
+import com.stonebell.lottoman.domain.entitiy.LottoData
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface LottoInfoApi{
@@ -46,7 +44,7 @@ interface LottoInfoApi{
                     @SerializedName("drwNoDate") val drwNoDate: String = "EMPTY",
                     @SerializedName("firstPrzwnerCo") val firstPrzwnerCo: Int = 0
             ){
-                fun convertToLottData(): LottoData{
+                fun convertToLottData(): LottoData {
                     val balls = arrayListOf(ball1, ball2, ball3, ball4, ball5, ball6)
                     return LottoData(gameNum, drwNoDate, firstAccumamnt, firstWinamnt, firstPrzwnerCo, totSellamnt, balls, bnusBall)
                 }

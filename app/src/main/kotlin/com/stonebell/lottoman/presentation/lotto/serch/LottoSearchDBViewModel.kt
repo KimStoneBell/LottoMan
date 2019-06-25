@@ -2,14 +2,14 @@ package com.stonebell.lottoman.presentation.lotto.serch
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.stonebell.lottoman.datasource.LottoRepository
+import com.stonebell.lottoman.data.repository.LottoDataRepository
 import com.stonebell.lottoman.domain.ILottoRepository
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 
 class LottoSearchDBViewModel : ViewModel(){
 
-    private val database: ILottoRepository by lazy { LottoRepository() }
+    private val database: ILottoRepository by lazy { LottoDataRepository() }
 
     val lottoInfoText = MutableLiveData<String>()
     val targetLottoText = MutableLiveData<String>()
@@ -18,19 +18,16 @@ class LottoSearchDBViewModel : ViewModel(){
 
     fun searchLottoInfo(){
         targetLottoText.value?.let{
-            disposes += database.searchLottoInfo(it.toInt())
+            disposes += database.getLottoData(it.toInt())
                     .map {it.balls.toString()}
-                    .subscribe ({
-                        lottoInfoText.postValue(it)
-                    },{})
+                    .subscribe ({lottoInfoText.postValue(it)},{})
         }
     }
 
     fun searchLottoLastNumber(){
-        disposes += database.searchLottoInfo(ILottoRepository.SEARCH_INDEX_LAST)
+        disposes += database.getLottoData(ILottoRepository.GAME_ROUND_LAST)
                 .map { "Last Lotto No. : $it"}
-                .subscribe ({lottoInfoText.postValue(it)
-        },{})
+                .subscribe ({lottoInfoText.postValue(it)},{})
     }
 
     override fun onCleared() {
