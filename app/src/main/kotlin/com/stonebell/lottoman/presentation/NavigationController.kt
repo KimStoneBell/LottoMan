@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.stonebell.lottoman.presentation.lotto.scanner.QrcodeScannerActivity
 import com.stonebell.lottoman.presentation.lotto.make.LottoDBMakeActivity
+import com.stonebell.lottoman.presentation.lotto.nummberlist.WinningNumberListActivity
 import com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBActivity
 import com.stonebell.lottoman.presentation.lotto.store.StoreMapActivity
 
@@ -23,5 +24,9 @@ class NavigationController(val context: Context){
 
     fun startStoreMapActivity(){
         context.startActivity(Intent(context, StoreMapActivity::class.java))
+    }
+
+    fun startWinningListActivity(){
+        context.startActivity(Intent(context, WinningNumberListActivity::class.java))
     }
 }

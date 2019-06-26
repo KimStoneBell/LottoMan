@@ -25,7 +25,7 @@
             android:text="데이터 가져오기"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:onClick="@{viewModel.storeDataSerch()}"/>
+            android:onClick="@{() -> viewModel.storeDataSerch()}"/>
 
     </RelativeLayout>
 

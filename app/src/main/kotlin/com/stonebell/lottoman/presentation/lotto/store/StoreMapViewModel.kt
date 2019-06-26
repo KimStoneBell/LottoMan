@@ -27,7 +27,7 @@ class StoreMapViewModel : ViewModel(){
             var storeDataStr = ""
 
             for ((count, storeData) in it.withIndex()) {
-                Log.d("johnkim", "store.storeName : ${storeData}")
+                Log.d("johnkim", "store.storeName : $storeData")
                 storeDataStr += "data $count : $storeData \n"
             }
             //TODO ????

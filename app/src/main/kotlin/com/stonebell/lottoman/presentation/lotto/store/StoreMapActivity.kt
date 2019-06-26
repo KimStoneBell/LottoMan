@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.stonebell.lottoman.R
+import com.stonebell.lottoman.databinding.ActivityStoreMapBinding
 
 class StoreMapActivity : AppCompatActivity() {
     private val storeViewModel: StoreMapViewModel by viewModels()
@@ -13,7 +14,7 @@ class StoreMapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DataBindingUtil.setContentView<com.stonebell.lottoman.databinding.ActivityStoreMapBinding>(this, R.layout.activity_store_map).apply {
+        DataBindingUtil.setContentView<ActivityStoreMapBinding>(this, R.layout.activity_store_map).apply {
             viewModel = storeViewModel
             lifecycleOwner = this@StoreMapActivity
             lottoContentView.movementMethod = ScrollingMovementMethod()

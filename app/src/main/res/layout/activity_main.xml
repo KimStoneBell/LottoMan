@@ -14,31 +14,33 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_save_lotto_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="save Lotto Number"
             android:onClick="@{() -> navigator.startLottoDBMakeActivity()}"/>
 
         <Button
-            android:id="@+id/btn_search_lotto_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="serch Lotto Number"
             android:onClick="@{() -> navigator.startLottoSearchDBActivity()}"/>
 
         <Button
-            android:id="@+id/btn_qrcode_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Qrcode Scan"
             android:onClick="@{() -> navigator.startQrcodeScannerActivity()}"/>
 
         <Button
-            android:id="@+id/btn_store_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Store Map"
             android:onClick="@{() -> navigator.startStoreMapActivity()}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lotto Winning List"
+            android:onClick="@{() -> navigator.startWinningListActivity()}"/>
     </LinearLayout>
 </layout>
