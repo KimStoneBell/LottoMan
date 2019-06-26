@@ -1,5 +1,6 @@
 package com.stonebell.lottoman.data.datasource
 
+import android.util.Log
 import com.google.firebase.database.*
 import com.stonebell.lottoman.data.repository.ILottoDataSource
 import com.stonebell.lottoman.domain.entitiy.LottoData
@@ -11,6 +12,9 @@ class FirebaseLottoDataSource : ILottoDataSource{
         return database.reference
                 .child("GAMES")
                 .createObservable()
+                .doOnNext {
+                    Log.d("hyuhyu", "createObservable onNext!!!! + $it")
+                }
                 .flatMapIterable { it.children }
                 .map{it.getValue(LottoData::class.java)!!}.toList()
 

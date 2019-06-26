@@ -9,12 +9,13 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_lotto_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{model.balls}"/>
+            android:text="@{model.balls.toString()}"/>
     </LinearLayout>
 </layout>

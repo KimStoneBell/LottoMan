@@ -1,6 +1,7 @@
 package com.stonebell.lottoman.presentation.lotto.nummberlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,7 @@ class WinningNumberListActivity : AppCompatActivity(){
         }
 
         winningNumberViewModel.lottoWinningDatas.observe(this, Observer {
+            Log.d("hyuhyu", "onData!!!! + ${it.size}")
             listAdapter.submitList(it)
         })
     }
@@ -37,7 +39,7 @@ class WinningNumberListAdapter : ListAdapter<LottoData, WinningNumberViewHolder>
 
     class ListItemCallback : DiffUtil.ItemCallback<LottoData>() {
         override fun areItemsTheSame(oldItem: LottoData, newItem: LottoData): Boolean {
-            return oldItem === newItem
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: LottoData, newItem: LottoData): Boolean {
@@ -54,7 +56,6 @@ class WinningNumberListAdapter : ListAdapter<LottoData, WinningNumberViewHolder>
         val item = getItem(position)
         holder.binding(item)
     }
-
 }
 
 class WinningNumberViewHolder(val itemBinding: ItemWinningNumberBinding) : RecyclerView.ViewHolder(itemBinding.root){

@@ -18,9 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.lotto.make.LottoDBMakeActivity" />
-        <activity android:name=".presentation.lotto.serch.LottoSearchDBActivity" />
+        <activity android:name=".presentation.lotto.search.LottoSearchDBActivity" />
         <activity android:name=".presentation.lotto.store.StoreMapActivity"/>
         <activity android:name=".presentation.lotto.scanner.QrcodeScannerActivity" />
+        <activity android:name=".presentation.lotto.nummberlist.WinningNumberListActivity"/>
     </application>
 
 </manifest>

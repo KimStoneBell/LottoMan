@@ -1,4 +1,4 @@
-package com.stonebell.lottoman.presentation.lotto.serch
+package com.stonebell.lottoman.presentation.lotto.search
 
 import android.os.Bundle
 import androidx.activity.viewModels

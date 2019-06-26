@@ -5,7 +5,7 @@ import android.content.Intent
 import com.stonebell.lottoman.presentation.lotto.scanner.QrcodeScannerActivity
 import com.stonebell.lottoman.presentation.lotto.make.LottoDBMakeActivity
 import com.stonebell.lottoman.presentation.lotto.nummberlist.WinningNumberListActivity
-import com.stonebell.lottoman.presentation.lotto.serch.LottoSearchDBActivity
+import com.stonebell.lottoman.presentation.lotto.search.LottoSearchDBActivity
 import com.stonebell.lottoman.presentation.lotto.store.StoreMapActivity
 
 class NavigationController(val context: Context){
