@@ -9,11 +9,11 @@ import com.stonebell.lottoman.databinding.ActivityLottoSearchDbBinding
 
 
 class LottoSearchDBActivity: AppCompatActivity(){
+
     private val searchViewModel: LottoSearchDBViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         DataBindingUtil.setContentView<ActivityLottoSearchDbBinding>(this, R.layout.activity_lotto_search_db).apply {
             viewModel = searchViewModel
             lifecycleOwner = this@LottoSearchDBActivity

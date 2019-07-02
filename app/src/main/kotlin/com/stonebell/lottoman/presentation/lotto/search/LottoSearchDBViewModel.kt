@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.stonebell.lottoman.data.repository.LottoDataRepository
+import com.stonebell.lottoman.di.component.DaggerRepository
 import com.stonebell.lottoman.domain.ILottoRepository
 import io.reactivex.processors.PublishProcessor
 
 class LottoSearchDBViewModel : ViewModel(){
 
-    private val database: ILottoRepository by lazy { LottoDataRepository() }
+    val database: ILottoRepository by lazy { DaggerRepository.create().lottoDataRepo() }
 
     private val searchSubject = PublishProcessor.create<Int>()
 

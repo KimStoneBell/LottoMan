@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.database.*
 import com.stonebell.lottoman.data.repository.LottoStoreRepository
+import com.stonebell.lottoman.di.component.DaggerRepository
 import com.stonebell.lottoman.domain.ILottoStoreRepository
 import com.stonebell.lottoman.domain.entitiy.StoreData
 import io.reactivex.Observable
@@ -18,7 +19,7 @@ class StoreMapViewModel : ViewModel(){
 
     val storeDataText = MutableLiveData<String>()
 
-    private val storeRepository : ILottoStoreRepository by lazy { LottoStoreRepository() }
+    private val storeRepository : ILottoStoreRepository by lazy { DaggerRepository.create().lottoStoreRepo() }
 
 
     fun storeDataSerch(){

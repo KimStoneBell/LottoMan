@@ -29,7 +29,6 @@ class WinningNumberListActivity : AppCompatActivity(){
         }
 
         winningNumberViewModel.lottoWinningDatas.observe(this, Observer {
-            Log.d("hyuhyu", "onData!!!! + ${it.size}")
             listAdapter.submitList(it)
         })
     }

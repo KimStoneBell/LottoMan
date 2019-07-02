@@ -1,15 +1,12 @@
 package com.stonebell.lottoman.data.repository
 
-import com.stonebell.lottoman.data.datasource.FirebaseLottoDataSource
 import com.stonebell.lottoman.domain.ILottoRepository
 import com.stonebell.lottoman.domain.ILottoRepository.Companion.GAME_ROUND_LAST
 import com.stonebell.lottoman.domain.entitiy.LottoData
 import io.reactivex.Single
+import javax.inject.Inject
 
-class LottoDataRepository : ILottoRepository{
-
-
-    private val cashDataSource: ILottoDataSource by lazy { FirebaseLottoDataSource() }
+class LottoDataRepository @Inject constructor(var cashDataSource: ILottoDataSource): ILottoRepository{
 
     override fun getLottoData(roundNum : Int): Single<LottoData> {
         return when(roundNum){

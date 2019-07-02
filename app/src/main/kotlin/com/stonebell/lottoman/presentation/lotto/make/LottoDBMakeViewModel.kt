@@ -6,13 +6,14 @@ import androidx.lifecycle.ViewModel
 import com.stonebell.lottoman.data.repository.LottoDataRepository
 import com.stonebell.lottoman.domain.ILottoRepository
 import com.stonebell.lottoman.data.datasource.web.LottoInfoApi
+import com.stonebell.lottoman.di.component.DaggerRepository
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 
 class LottoDBMakeViewModel : ViewModel(){
 
-    private val database: ILottoRepository by lazy { LottoDataRepository() }
+    private val database: ILottoRepository by lazy { DaggerRepository.create().lottoDataRepo() }
 
     private val disposes = CompositeDisposable()
 

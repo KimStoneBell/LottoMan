@@ -100,3 +100,12 @@ ext.deps.glide_annotation = "com.github.bumptech.glide:compiler:$ext.versions.gl
 ext.deps.jsoup = 'org.jsoup:jsoup:1.12.1'
 ext.deps.koin = 'org.koin:koin-android:2.0.0-rc-2'
 ext.deps.okhttp = 'com.squareup.okhttp3:okhttp:3.12.0'
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ext.versions.dagger2 = '2.23.2'
+ext.deps.dagger = "com.google.dagger:dagger:$ext.versions.dagger2"
+ext.deps.dagger_compiler = "com.google.dagger:dagger-compiler:$ext.versions.dagger2"
+ext.deps.dagger_android = "com.google.dagger:dagger-android:$ext.versions.dagger2"
+ext.deps.dagger_android_support = "com.google.dagger:dagger-android-support:$ext.versions.dagger2"
+ext.deps.dagger_android_processor = "com.google.dagger:dagger-android-processor:$ext.versions.dagger2"
