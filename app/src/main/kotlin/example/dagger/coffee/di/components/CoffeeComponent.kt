@@ -2,8 +2,8 @@ package example.dagger.coffee.di.components
 
 import dagger.Component
 import example.dagger.coffee.di.modules.CoffeeModule
-import example.dagger.coffee.struct.CoffeeMaker
-import example.dagger.coffee.struct.CoffeeMakerProperties
+import example.dagger.coffee.struct.coffee.CoffeeMaker
+import example.dagger.coffee.struct.coffee.CoffeeMakerProperties
 
 @Component(modules = [CoffeeModule::class])
 interface CoffeeComponent{

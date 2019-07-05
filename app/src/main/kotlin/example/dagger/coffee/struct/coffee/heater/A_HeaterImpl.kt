@@ -1,4 +1,4 @@
-package example.dagger.coffee.struct.heater
+package example.dagger.coffee.struct.coffee.heater
 
 import example.dagger.coffee.di.modules.heater.IHeater
 

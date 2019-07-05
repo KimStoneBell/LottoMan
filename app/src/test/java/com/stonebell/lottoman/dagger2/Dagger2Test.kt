@@ -1,12 +1,14 @@
 package com.stonebell.lottoman.dagger2
 
-import example.dagger.DaggerFruitsComponent
 import example.dagger.coffee.di.DummyInjector
+import example.dagger.coffee.di.components.CafeComponent
+import example.dagger.coffee.di.components.DaggerCafeComponent
 import example.dagger.coffee.di.components.DaggerCoffeeComponent
-import example.dagger.coffee.struct.CoffeeMaker
-import example.dagger.coffee.struct.CoffeeMakerProperties
-import example.dagger.coffee.struct.heater.A_HeaterImpl
-import example.dagger.coffee.struct.pump.A_PumpImpl
+import example.dagger.coffee.struct.coffee.CoffeeBean
+import example.dagger.coffee.struct.coffee.CoffeeMaker
+import example.dagger.coffee.struct.coffee.CoffeeMakerProperties
+import example.dagger.coffee.struct.coffee.heater.A_HeaterImpl
+import example.dagger.coffee.struct.coffee.pump.A_PumpImpl
 import org.junit.Test
 
 
@@ -42,5 +44,12 @@ class Dagger2Test {
             DaggerCoffeeComponent.create().injectCoffeeMakerProperties(this)
         }.brew()
 
+
+    }
+
+    @Test
+    fun coffeeTest2(){
+        DaggerCafeComponent.create().cafeInfo().welcome()
+        DaggerCafeComponent.create().coffeeMaker().brew(CoffeeBean())
     }
 }
