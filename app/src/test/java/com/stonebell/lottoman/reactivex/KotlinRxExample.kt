@@ -15,6 +15,22 @@ class KotlinRxExample {
     }
 
     @Test
+    fun simpleTest(){
+        val observable = Observable.just("it")
+
+        observable.subscribe {
+            System.out.println("step1 subscribe data : $it")
+        }
+        Thread{}.start()
+
+
+        Thread.sleep(1000)
+        observable.subscribe {
+            System.out.println("step2 subscribe data : $it")
+        }
+    }
+
+    @Test
     fun justTest(){
 
         val intentsSubject: PublishSubject<String> = PublishSubject.create()

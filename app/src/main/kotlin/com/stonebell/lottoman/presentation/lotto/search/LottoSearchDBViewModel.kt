@@ -11,7 +11,7 @@ import io.reactivex.processors.PublishProcessor
 
 class LottoSearchDBViewModel : ViewModel(){
 
-    val database: ILottoRepository by lazy { DaggerRepository.create().lottoDataRepo() }
+    private val database: ILottoRepository by lazy { DaggerRepository.create().lottoDataRepo() }
 
     private val searchSubject = PublishProcessor.create<Int>()
 
